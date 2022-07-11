@@ -9,10 +9,16 @@
 <body>
     <h1>전 세계 축구선수 몸값 보기</h1>
     <form action="/list" method="post">
-        <label> Please Input List Number </label>
-        <input name = "number" type = "number">
-        <input type="submit" value ="Enter">
-
+        <label>Input List Number : 
+        <input type = "number" name = "listnum"></label> <br><br>
+        <!-- 체크 박스 추가 -->
+        Select Value Type : 
+        <label><input type="checkbox" name="type" value="USD" >$</label>
+        <label><input type="checkbox" name="type" value="EUR" >€</label>
+        <label><input type="checkbox" name="type" value="KRW" >₩</label>
+        <br><br>
+        <input type= "submit" value = "Submit">
+        <input type= "reset" value = "Reset">
     </form>
 </body>
 </html>

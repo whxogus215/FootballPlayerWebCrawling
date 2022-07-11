@@ -10,8 +10,10 @@ def index():
 
 @app.route("/list", methods=['POST'])
 def post():
-    value = request.form["number"]
-    df = transfermarkt.show_valueList(value)
+    num = request.form["listnum"]
+    # checkbox 데이터 POST로 가져오기
+    typeList = request.form.getlist('type')
+    df = transfermarkt.show_valueList(num, typeList)
     return df.to_html(index=False)
 
 
