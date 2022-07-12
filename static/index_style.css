@@ -8,7 +8,13 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
+  background-color: rgb(250, 71, 71);
+
+}
+
+main {
   background-color: white;
+  border-radius: 15px;
 }
 
 .form-signin {
@@ -30,8 +36,4 @@ body {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-}
-
-.checkbox .mb-3 {
-  text-align: center;
 }
