@@ -1,10 +1,12 @@
+from tokenize import group
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import time
-from math import ceil 
+from math import ceil
 
 def show_valueList(list_num, typeList):
+
     list_num = int(list_num)
     url = "https://www.transfermarkt.com/"
 
@@ -47,20 +49,38 @@ def show_valueList(list_num, typeList):
         for data in typeList:
             if data == "USD":
                 df['Value($)'] = df['Value']*1.01
+                df['Value($)'] = df['Value($)'].round(3)
                 df['Value($)'] = df['Value($)'].astype(str)+'M'
             elif data == "EUR":
                 df['Value(€)'] = df['Value']
+                df['Value(€)'] = df['Value(€)'].round(3)
                 df['Value(€)'] = df['Value(€)'].astype(str)+'M'
             elif data == "KRW":
                 df['Value(₩)'] = df['Value']*13
+                df['Value(₩)'] = df['Value(₩)'].round(3)
                 df['Value(₩)'] = df['Value(₩)'].astype(str)+'억'
         df.drop(columns=['Value'], inplace=True)
 
-    return df[0:list_num] # 입력한 명 수만큼 인덱싱
+    df = df[0:list_num]
+    # 데이터프레임 변환
+    group_data = df.groupby('Nat.').size().sort_values(ascending=False)
+    group_data = group_data.reset_index()
+    group_data.rename(columns={0:'Count'}, inplace=True)
+    group_data.rename(columns={'Nat.':'Nation'}, inplace=True)
+
+    # 데이터프레임 합치기
+    result = pd.concat([df,group_data], axis=1)
+    result.fillna(0, inplace=True)
+    result = result.astype({'Count':'int'})
+    # Nan -> 0 제거
+    result.loc[result['Count'] == 0, 'Count'] = ''
+    result.loc[result['Nation'] == 0, 'Nation'] = ''
+
+    return result
 
 
 
 if __name__ == "__main__":
-    show_valueList(10)
+    show_valueList(10, typeList=[])
     
 
