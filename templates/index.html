@@ -44,8 +44,28 @@
     <h1 class="h3 mb-3 fw-normal">Please input number</h1>
     <div class="form-floating">
       <input type="number" class="form-control" id="floatingInput" placeholder="25" name = "listnum"
-      style="margin-bottom: 10px;">
+      style="margin-bottom: 17px;">
       <label for="floatingInput" style="font-size : larger">List number</label>
+    </div>
+    <!-- 포지션 입력 항목 -->
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputGroupSelect01">Position</label>
+      <select class="form-select" id="inputGroupSelect01" name="position">
+        <option selected value="AL">All</option>
+        <option value="GK">GoalKeeper</option>
+        <option value="DF">Defenders</option>
+        <option value="MF">Midfielders</option>
+        <option value="FW">Fowards</option>
+      </select>
+    </div>
+    <!-- 정렬 방법 입력 항목 -->
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputGroupSelect02">Sort</label>
+      <select class="form-select" id="inputGroupSelect02" name="sorting">
+        <option selected>Value</option>
+        <option value="descending">Age &#8595;</option>  
+        <option value="ascending">Age &#8593;</option>
+      </select>
     </div>
 
     <div class="checkbox mb-3" style="width: 243px;">
