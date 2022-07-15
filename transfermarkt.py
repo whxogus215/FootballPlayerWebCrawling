@@ -46,7 +46,7 @@ def show_valueList(list_num, typeList, position):
     
     # 크롤링 끝
     df = pd.DataFrame(player_list, 
-        columns=['#', 'Player', 'Position', 'Age', 'Nat.', 'Club', 'Value'])
+        columns=['', 'Player', 'Position', 'Age', 'Nat.', 'Club', 'Value'])
 
 
     df['Value'] = df['Value'].str.replace('€','')
