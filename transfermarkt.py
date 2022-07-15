@@ -30,6 +30,7 @@ def show_valueList(list_num, typeList, position):
         else :
             player_info = soup.find_all('tr', class_ = ['odd','even'])
 
+        # 함수 만들기
         for info in player_info:
             player = info.find_all("td")
             number = player[0].text 
@@ -46,6 +47,8 @@ def show_valueList(list_num, typeList, position):
     # 크롤링 끝
     df = pd.DataFrame(player_list, 
         columns=['#', 'Player', 'Position', 'Age', 'Nat.', 'Club', 'Value'])
+
+
     df['Value'] = df['Value'].str.replace('€','')
     df['Value'] = df['Value'].str.replace('m','').astype('float')
 
@@ -53,6 +56,7 @@ def show_valueList(list_num, typeList, position):
         df.drop(columns=['Value'], inplace=True)
     else:
         for data in typeList:
+            # 함수 만들기
             if data == "USD":
                 df['Value($)'] = df['Value']*1.01
                 df['Value($)'] = df['Value($)'].round(3)
@@ -67,9 +71,12 @@ def show_valueList(list_num, typeList, position):
                 df['Value(₩)'] = df['Value(₩)'].astype(str)+'억'
         df.drop(columns=['Value'], inplace=True)
 
+    
     # 데이터프레임 내용 수정
+    # 함수 만들기
     group_data = df.groupby('Nat.').size().sort_values(ascending=False)
     group_data = group_data.reset_index()
+
     group_data.rename(columns={0:'Count'}, inplace=True)
     group_data.rename(columns={'Nat.':'Nation'}, inplace=True)
 
