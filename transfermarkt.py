@@ -1,3 +1,4 @@
+from glob import glob
 from tokenize import group
 from bs4 import BeautifulSoup
 import requests
@@ -45,6 +46,7 @@ def show_valueList(list_num, typeList, position):
         time.sleep(1)
     
     # 크롤링 끝
+    global df
     df = pd.DataFrame(player_list, 
         columns=['', 'Player', 'Position', 'Age', 'Nat.', 'Club', 'Value'])
 
@@ -74,20 +76,29 @@ def show_valueList(list_num, typeList, position):
     
     # 데이터프레임 내용 수정
     # 함수 만들기
+    # group_data = df.groupby('Nat.').size().sort_values(ascending=False)
+    # group_data = group_data.reset_index()
+
+    # group_data.rename(columns={0:'Count'}, inplace=True)
+    # group_data.rename(columns={'Nat.':'Nation'}, inplace=True)
+
+    # result = pd.concat([df,group_data], axis=1)
+    # result.fillna(0, inplace=True)
+    # result = result.astype({'Count':'int'})
+
+    # result.loc[result['Count'] == 0, 'Count'] = ''
+    # result.loc[result['Nation'] == 0, 'Nation'] = ''
+
+    return df
+
+def show_nationList():
     group_data = df.groupby('Nat.').size().sort_values(ascending=False)
     group_data = group_data.reset_index()
 
     group_data.rename(columns={0:'Count'}, inplace=True)
     group_data.rename(columns={'Nat.':'Nation'}, inplace=True)
 
-    result = pd.concat([df,group_data], axis=1)
-    result.fillna(0, inplace=True)
-    result = result.astype({'Count':'int'})
-
-    result.loc[result['Count'] == 0, 'Count'] = ''
-    result.loc[result['Nation'] == 0, 'Nation'] = ''
-
-    return result
+    return group_data
 
 if __name__ == "__main__":
     show_valueList(230, ['USD'], "AL")    

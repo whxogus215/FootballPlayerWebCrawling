@@ -17,7 +17,10 @@ def show_result():
     df = transfermarkt.show_valueList(num, typeList, pos)
     df_html = df.to_html(index=False, justify='left', classes='table')
 
-    return render_template('result.html', df_html=df_html)
+    nf = transfermarkt.show_nationList()
+    nf_html = nf.to_html(index=False,justify='left',classes='table')
+
+    return render_template('result.html', df_html=df_html, nf_html=nf_html)
 
 if __name__ == "__main__":
     # 개발 끝나면 디버그 종료하기
