@@ -1,0 +1,56 @@
+body {
+    display: grid;
+
+    /* 그리드 9개 영역 지정 */
+    grid-template-areas:
+        
+        "header header header"
+        "nav article ads"
+        "nav article ads";
+    
+    /* 1행 2행 3행 높이 지정, 1fr의 경우 1행과 3행의 나머지 공간 */
+    /* fr의 경우 지정값들을 먼저 지정하고 남은 영역을 기준으로 함 */
+    grid-template-rows: 100px 1fr;
+    /* 1열 2열 3열 너비 지정 */
+    grid-template-columns: 20% 1fr 15%;
+
+    height : 100vh;
+
+
+}
+
+.title-header h1 {
+    font-size: 35px;
+    text-align: center;
+    padding-top: 7px;
+}
+
+
+
+.dataframe table {
+    margin-bottom: 0px;
+}
+
+table {
+    width: 100%;
+
+    border: none;
+}
+
+#pageHeader {
+    grid-area: header;
+}
+
+#mainArticle {
+    grid-area: article;
+    /* border: 20px solid rgba(221, 215, 215, 0.741); */
+}
+#mainNav {
+    grid-area: nav;
+}
+#siteAds {
+    grid-area: ads;
+}
+
+
+
