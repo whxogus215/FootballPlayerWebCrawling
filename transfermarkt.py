@@ -1,6 +1,7 @@
 from glob import glob
 from tokenize import group
 from bs4 import BeautifulSoup
+from numpy import sort
 import requests
 import pandas as pd
 import time
@@ -34,21 +35,22 @@ def show_valueList(list_num, typeList, position):
         # 함수 만들기
         for info in player_info:
             player = info.find_all("td")
-            number = player[0].text 
             name = player[3].text 
             position = player[4].text
             age = player[5].text 
             nation = player[6].img['alt'] 
             team = player[7].img['alt'] 
             value = player[8].text.strip()
-            player_list.append([number, name, position, age, nation, team, value])
+            player_list.append([name, position, age, nation, team, value])
 
         time.sleep(1)
     
     # 크롤링 끝
     global df
+
     df = pd.DataFrame(player_list, 
-        columns=['', 'Player', 'Position', 'Age', 'Nat.', 'Club', 'Value'])
+        columns=['Player', 'Position', 'Age', 'Nat.', 'Club', 'Value'])
+    df.index+=1
 
 
     df['Value'] = df['Value'].str.replace('€','')
@@ -99,6 +101,19 @@ def show_nationList():
     group_data.rename(columns={'Nat.':'Nation'}, inplace=True)
 
     return group_data
+
+def sort_valueList(sorting):
+    if sorting == "descending":
+        df.sort_values(by='Age', ascending=False, inplace=True)
+        df.reset_index(drop=True, inplace=True)
+        df.index+=1
+    elif sorting == "ascending":
+        df.sort_values(by='Age', ascending=True, inplace=True)
+        df.reset_index(drop=True, inplace=True)
+        df.index+=1
+    
+    return df
+
 
 if __name__ == "__main__":
     show_valueList(230, ['USD'], "AL")    

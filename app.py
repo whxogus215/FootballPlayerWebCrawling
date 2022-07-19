@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import pandas as pd
-import transfermarkt
+import transfermarkt as tf
 
 app = Flask(__name__, static_url_path='/static')
         
@@ -13,12 +13,15 @@ def show_result():
     num = request.form["listnum"]
     typeList = request.form.getlist('type')
     pos = request.form['position']
+    sort = request.form['sorting']
 
-    df = transfermarkt.show_valueList(num, typeList, pos)
-    df_html = df.to_html(index=False, justify='left', classes='table')
+    df = tf.show_valueList(num, typeList, pos)
+    df = tf.sort_valueList(sort)
 
-    nf = transfermarkt.show_nationList()
-    nf_html = nf.to_html(index=False,justify='left',classes='table')
+    df_html = df.to_html(justify='left', classes='table')
+
+    nf = tf.show_nationList()
+    nf_html = nf.to_html(index=False, justify='left',classes='table')
 
     return render_template('result.html', df_html=df_html, nf_html=nf_html)
 

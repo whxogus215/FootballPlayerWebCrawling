@@ -11,7 +11,7 @@ body {
     /* fr의 경우 지정값들을 먼저 지정하고 남은 영역을 기준으로 함 */
     grid-template-rows: 100px auto;
     /* 1열 2열 너비 지정 */
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 3.5fr 1fr;
 
     gap: 20px;
     
@@ -23,7 +23,7 @@ body {
 .title-header h1 {
     font-size: 35px;
     text-align: center;
-    padding-top: 7px;
+    padding-top: 12px;
 }
 
 .dataframe table {
@@ -49,6 +49,7 @@ tr>td {
 
 table {
     width: 100%;
+    table-layout: auto;
 }
 
 #pageHeader {
