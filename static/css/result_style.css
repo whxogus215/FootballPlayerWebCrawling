@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Poppins";
+    src: url("/static/font/Poppins-Regular.ttf");
+}
+
 body {
     display: grid;
 
@@ -12,33 +17,39 @@ body {
     grid-template-rows: 100px auto;
     /* 1열 2열 너비 지정 */
     grid-template-columns: 3.5fr 1fr;
-
     gap: 20px;
-    
     height : 100vh;
-
-
 }
 
 .title-header h1 {
     font-size: 35px;
     text-align: center;
-    padding-top: 12px;
+    padding-top: 29px;
+    color: #f6ffff;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 600;
+    font-style: oblique;
+
+
 }
 
 .dataframe table {
     margin-bottom: 0px;
 }
 
-thead { background:lightgray;}
+thead { background:#55cca2;
+}
+
+thead>tr {
+    color: #f6ffff;
+}
+
+tbody { background-color: white;
+}
 
 td:nth-of-type(1){
     font-weight: bold;
-}
 
-tr>th {
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
 }
 
 tr>td {
@@ -50,10 +61,13 @@ tr>td {
 table {
     width: 100%;
     table-layout: auto;
+    font-family: 'Poppins',sans-serif;
 }
 
 #pageHeader {
     grid-area: header;
+    background-color: #55cca2;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
 }
 
 #mainArticle {
@@ -62,11 +76,16 @@ table {
     margin-bottom: 20px;
 }
 
+#mainArticle tbody>tr>th{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+
 #nationTable {
     grid-area: nation;
     margin-right: 160px;
     margin-bottom: 20px;
 }
-
 
 
