@@ -20,8 +20,6 @@ def show_result():
         sort = request.form['sorting']
 
         trans = tf.transferCrawling(list_num,typeList,pos,sort)
-        # df = tf.show_valueList(list_num, typeList, pos)
-        # df = tf.sort_valueList(sort)
         df = trans.show_valueList()
         # dataframe html 변환
         df_html = df.to_html(justify='left', classes='table')
