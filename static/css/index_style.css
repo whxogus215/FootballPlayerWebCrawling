@@ -1,16 +1,15 @@
-html,
 body {
-  height: 100%;
-}
-
-body {
+  background-image: url("/static/brand/foot.jpg");
+  background-size: cover;
   display: flex;
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-image: url("/static/brand/foot.jpg");
-  background-size: cover;
+}
 
+html,
+body {
+  height: 100%;
 }
 
 main {

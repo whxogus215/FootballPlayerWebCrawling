@@ -11,7 +11,7 @@
 <body>
     <header id="pageHeader">
         <div class="title-header">
-            <h1>Transfermarkt Most Valuable Players Top {{index_num}} </h1>
+            <h1>Transfermarkt Most Valuable {{pos}} Top {{index_num}} </h1>
         </div>
     </header>
 
@@ -22,7 +22,7 @@
     </article>
 
     <div id="nationTable">
-    {{ nf_html | safe }}
+    {{ gd_html | safe }}
     </div>
 
 
