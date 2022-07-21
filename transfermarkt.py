@@ -114,6 +114,10 @@ def sort_valueList(sorting):
     
     return df
 
+def get_size():
+    # dataframe의 열 개수 정수형으로 추출
+    index_num = df.shape[0]
+    return index_num
 
 if __name__ == "__main__":
     show_valueList(230, ['USD'], "AL")    

@@ -27,7 +27,9 @@ def show_result():
         nf = tf.show_nationList()
         nf_html = nf.to_html(index=False, justify='left',classes='table')
 
-        return render_template('result.html', df_html=df_html, nf_html=nf_html)
+        index_num = tf.get_size()
+
+        return render_template('result.html', df_html=df_html, nf_html=nf_html, index_num = index_num)
 
 if __name__ == "__main__":
     # 개발 끝나면 디버그 종료하기
